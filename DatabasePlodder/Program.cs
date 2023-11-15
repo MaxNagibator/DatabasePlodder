@@ -14,9 +14,9 @@ CREATE TABLE dbo.heros
 var sqlProvider = new SqlProvider(connectionString);
 sqlProvider.ExecuteNonQuery(createTableQuery);
 
-string deleteHeroQuery = @"DELETE FROM dbo.heros WHERE Id = @Id";
+string deleteHeroQuery = @"DELETE FROM dbo.heros WHERE Id <= @Id";
 sqlProvider = new SqlProvider(connectionString);
-sqlProvider.AddParameter("Id", 1);
+sqlProvider.AddParameter("Id", 3);
 sqlProvider.ExecuteNonQuery(deleteHeroQuery);
 
 var random = new Random();
@@ -28,12 +28,14 @@ sqlProvider.AddParameter("Name", "Бульбазавр");
 sqlProvider.AddParameter("Age", age);
 sqlProvider.ExecuteNonQuery(insertHeroQuery);
 
+age = random.Next(1, 217);
 sqlProvider = new SqlProvider(connectionString);
 sqlProvider.AddParameter("Id", 2);
 sqlProvider.AddParameter("Name", "Чермондер");
 sqlProvider.AddParameter("Age", age);
 sqlProvider.ExecuteNonQuery(insertHeroQuery);
 
+age = random.Next(1, 217);
 sqlProvider = new SqlProvider(connectionString);
 sqlProvider.AddParameter("Id", 3);
 sqlProvider.AddParameter("Name", "Пикачу");
